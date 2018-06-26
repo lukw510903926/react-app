@@ -36,7 +36,10 @@ class App extends Component {
     } catch (ignore) {
     }
   }
-
+  vue = {
+    title: '表头',
+    info:'属性展开表达式'
+  }
   render() {
     let header = {
       fontSize: 18
@@ -45,22 +48,26 @@ class App extends Component {
       paddingRight: 20,
       textAlign: "right"
     };
+    let user = {
+      name: 'name',
+      age: 20
+    }
     return (
       <div>
         <Layout>
           <Header>
-            <Row  style={header} >
+            <Row style={header} >
               <Col span={20}> 后台管理系统 </Col>
               <Col style={info} span={4}> 超级管理员 </Col>
             </Row>
           </Header>
           <Layout>
             <Sider style={{ height: this.state.height }}>
-              <LeftMenu/>
+              <LeftMenu />
             </Sider>
             <Layout>
               <Content span={24}>Content</Content>
-              <Footer style={{ textAlign: "center" }}>Footer</Footer>
+              <Footer style={{ textAlign: "center" }} {...user} {...this.vue}>Footer</Footer>
             </Layout>
           </Layout>
         </Layout>
