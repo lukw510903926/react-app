@@ -35,8 +35,6 @@ class LeftMenu extends React.Component {
         <SubMenu key="sub4" title={<span><Icon type="setting"/><span>Navigation Three</span></span>}>
           <Item key="9">Option 9</Item>
           <Item key="10">Option 10</Item>
-          <Item key="11">Option 11</Item>
-          <Item key="12">Option 12</Item>
         </SubMenu>
       </Menu>
     );
