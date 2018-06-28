@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Layout} from "antd";
 import LeftMenu from "./components/LeftMenu";
-import Grid from "./components/Table";
+import Grid from "./components/Grid";
 import {Row, Col} from "antd";
 import {Table, Icon, Divider} from 'antd';
 

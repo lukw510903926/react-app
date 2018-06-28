@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default class Table extends React.Component {
+export default class Grid extends React.Component {
 
     constructor(props) {
         super();
