@@ -4,7 +4,7 @@ import { Table } from "antd";
 export default class Grid extends React.Component {
 
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       list: [{ id: 1, name: "name1", age: 20 }, { id: 2, name: "name2", age: 30 }]
     };
