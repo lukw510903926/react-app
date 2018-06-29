@@ -12,7 +12,6 @@ class LeftMenu extends React.Component {
 
   constructor(props) {
     super(props);
-    console.info(props);
     this.state = {
       width: props.width || -1,
       height: props.height || -1,

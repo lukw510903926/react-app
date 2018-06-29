@@ -8,7 +8,7 @@ const RangePicker = DatePicker.RangePicker;
 export default class TimeRelatedForm extends React.Component {
 
     constructor(props) {
-        super()
+        super(props)
     }
 
     render() {
