@@ -6,7 +6,7 @@ import Form from "../Form";
 export default class ReactRoute extends React.Component {
 
   constructor(props) {
-    super();
+    super(props);
   }
 
   render() {
