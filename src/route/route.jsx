@@ -1,7 +1,7 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Grid from "../Grid";
-import Form from "../Form";
+import Grid from "../components/Grid";
+import Form from "../components/Form";
 
 export default class ReactRoute extends React.Component {
 
