@@ -13,7 +13,6 @@ export default class LeftMenu extends React.Component {
             openKeys: ["sub1"]
         };
     }
-
     rootSubmenuKeys = ["sub1", "sub2", "sub4"];
     onOpenChange = (openKeys) => {
         const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);

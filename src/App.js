@@ -67,7 +67,7 @@ export default class App extends Component {
                             </Layout.Sider>
                             <Layout>
                                 <Layout.Content span={24}>
-                                    <ReactRoute/>
+                                    <ReactRoute {...user}/>
                                 </Layout.Content>
                                 <Layout.Footer style={{textAlign: "center"}} {...user} {...this.vue}>Footer</Layout.Footer>
                             </Layout>
