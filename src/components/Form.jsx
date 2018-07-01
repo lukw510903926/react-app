@@ -172,9 +172,10 @@ class TimeRelatedForm extends React.Component {
                 <FormItem {...formItemLayout} label="微博地址">
                     {getFieldDecorator('website', { rules: [{required: true, message: 'Please input website!'}],
                     })
-                    (<AutoComplete dataSource={websiteOptions} onChange={this.handleWebsiteChange} placeholder="website" >
+                    (
+                      <AutoComplete dataSource={websiteOptions} onChange={this.handleWebsiteChange} placeholder="website" >
                             <Input/>
-                        </AutoComplete>
+                      </AutoComplete>
                     )}
                 </FormItem>
                 <FormItem {...formItemLayout} label="验证码" extra="We must make sure that your are a human.">
