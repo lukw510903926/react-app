@@ -44,6 +44,7 @@ export default class App extends Component {
         height
       });
     } catch (ignore) {
+      console.error(ignore)
     }
   }
 
