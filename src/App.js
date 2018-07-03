@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Layout } from "antd";
 import LeftMenu from "./components/LeftMenu";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import { Row, Col } from "antd";
 import ReactRoute from "./route/route";
 
@@ -14,7 +14,7 @@ export default class App extends Component {
       width: props.width || -1
     };
     this.handleVar = this.getChildData.bind(this);
-
+    console.info(this.handleVar);
   }
 
   vue = {
@@ -35,18 +35,16 @@ export default class App extends Component {
   updateSize() {
     try {
       //console.info(ReactDOM.findDOMNode(this).parentNode);
-      let {
-        width,
-        height
-      } = this.props;
+      // let {  width,  height } = this.props;
       //如果props没有指定height和width就自适应
-      height = document.body.clientHeight - 64;
-      width = document.body.clientWidth;
+      var height = document.body.clientHeight - 64;
+      var width = document.body.clientWidth;
       this.setState({
         width,
         height
       });
     } catch (ignore) {
+      console.error(ignore)
     }
   }
 
@@ -79,7 +77,7 @@ export default class App extends Component {
                 <Layout.Content span={24}>
                   <ReactRoute {...user} toParentHandle={this.getChildData.bind(this)}/>
                 </Layout.Content>
-                <Layout.Footer  style={{ textAlign: "center" }} {...user} {...this.vue}>Footer</Layout.Footer>
+                <Layout.Footer style={{ textAlign: "center" }} {...user} {...this.vue}>Footer</Layout.Footer>
               </Layout>
             </Layout>
           </Router>
