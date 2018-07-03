@@ -65,7 +65,8 @@ export default class Grid extends React.Component {
                 </tbody>
             </table>
             <Button type="primary" onClick={() => this.focusTextInput()}>获取table属性</Button>
-            <Input.TextArea style={{marginTop: 5, marginBottom: 5}} rows={4} placeholder='textarea内容' value={this.state.textAreaContent}/>
+            <Input.TextArea style={{marginTop: 5, marginBottom: 5}} rows={4} placeholder='textarea内容'
+                            value={this.state.textAreaContent}/>
             <Table ref={this.tableRef} columns={this.columns} dataSource={this.data} size="small"/>
         </div>;
     }
