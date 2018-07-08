@@ -11,8 +11,26 @@ export default class LeftMenu extends React.Component {
     super(props);
     this.state = {
       openKeys: ["sub1"],
-      selectedKeys: ["2"]
+      selectedKeys: ["/form"]
     };
+  }
+
+  componentWillMount() {
+    window.addEventListener("popstate", this.handlePop.bind(this));
+  }
+
+  componentDidMount() {
+    window.removeEventListener("popstate", this.handlePop.bind(this));
+  }
+
+  handlePop() {
+    console.info(window.location.href.split('#'))
+    let array = window.location.href.split('#')
+    let nowPath = array[1]
+    this.setState({
+      selectedKeys : [nowPath]
+    })
+    console.info(this.state)
   }
 
   rootSubmenuKeys = ["sub1", "sub2", "sub4"];
@@ -30,11 +48,11 @@ export default class LeftMenu extends React.Component {
   render() {
 
     return (
-      <Menu mode="inline" theme="dark" defaultSelectedKeys={this.state.selectedKeys} openKeys={this.state.openKeys}
+      <Menu mode="inline" theme="dark"   defaultSelectedKeys={this.state.selectedKeys} openKeys={this.state.openKeys}
             onOpenChange={this.onOpenChange}>
-        <SubMenu key="sub1" title={<span><Icon type="mail"/><span>组件</span></span>}>
-          <Item key="1"><Link to="table">表格</Link></Item>
-          <Item key="2"><Link to="/form">表单</Link></Item>
+        <SubMenu key="sub1" title={<span><Icon type="setting"/><span>组件</span></span>}>
+          <Item key="/table"><Link to="table">表格</Link></Item>
+          <Item key="/form"><Link to="/form">表单</Link></Item>
           <SubMenu key="sub3" title="Submenu">
             <Item key="7">Option 7</Item>
             <Item key="8">Option 8</Item>
