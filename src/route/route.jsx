@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route ,Redirect} from "react-router-dom";
 import Grid from "../components/Grid";
 import ReactForm from "../components/Form";
 
@@ -27,7 +27,7 @@ export default class ReactRoute extends Route {
 
   render() {
     return <div>
-      <Route exact path="/" component={Grid}/>
+      <Route exact path="/" render={()=><Redirect to="/form"/>}/>
       <Route path="/form" component={ReactForm}/>
       <Route path="/table" component={Grid}/>
     </div>;
