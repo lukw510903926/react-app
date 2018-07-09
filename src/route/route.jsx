@@ -1,5 +1,5 @@
 import React from "react";
-import { Route ,Redirect} from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 import Grid from "../components/Grid";
 import ReactForm from "../components/Form";
 
@@ -16,20 +16,11 @@ export default class ReactRoute extends Route {
     this.props.toParentHandle(false);
   }
 
-  routes = {
-    path: "/",
-    component: ReactForm,
-    childRoutes: [
-      { path: "form", component: ReactForm },
-      { path: "table", component: Grid }
-    ]
-  };
-
   render() {
-    return <div>
-      <Route exact path="/" render={()=><Redirect to="/form"/>}/>
+    return <Switch>
+      <Route exact path="/" render={() => <Redirect to="/form"/>}/>
       <Route path="/form" component={ReactForm}/>
       <Route path="/table" component={Grid}/>
-    </div>;
+    </Switch>;
   }
 }
