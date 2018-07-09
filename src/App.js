@@ -61,31 +61,29 @@ export default class App extends Component {
         let info = {paddingRight: 20, textAlign: "right"};
         let user = {name: "name", age: 20};
         return (
-            <div>
-                <Layout>
-                    <Layout.Header>
-                        <Row style={{fontSize: 18}}>
-                            <Col span={20}> 后台管理系统 </Col>
-                            <Col style={info} span={4}> 超级管理员 </Col>
-                        </Row>
-                    </Layout.Header>
-                    <Router>
+            <Layout>
+                <Layout.Header>
+                    <Row style={{fontSize: 18}}>
+                        <Col span={20}> 后台管理系统 </Col>
+                        <Col style={info} span={4}> 超级管理员 </Col>
+                    </Row>
+                </Layout.Header>
+                <Router>
+                    <Layout>
+                        <Layout.Sider style={{minHeight: this.state.minHeight}}>
+                            <LeftMenu/>
+                        </Layout.Sider>
                         <Layout>
-                            <Layout.Sider style={{minHeight: this.state.minHeight}}>
-                                <LeftMenu/>
-                            </Layout.Sider>
-                            <Layout>
-                                <Layout.Content span={24}>
-                                    <ReactRoute {...user} toParentHandle={this.getChildData.bind(this)}/>
-                                </Layout.Content>
-                                <Layout.Footer {...user} {...this.vue}>
-                                    <About/>
-                                </Layout.Footer>
-                            </Layout>
+                            <Layout.Content span={24}>
+                                <ReactRoute {...user} toParentHandle={this.getChildData.bind(this)}/>
+                            </Layout.Content>
+                            <Layout.Footer {...this.vue}>
+                                <About/>
+                            </Layout.Footer>
                         </Layout>
-                    </Router>
-                </Layout>
-            </div>
+                    </Layout>
+                </Router>
+            </Layout>
         )
     }
 }
