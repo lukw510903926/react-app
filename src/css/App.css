@@ -22,9 +22,12 @@
 .ant-layout-footer {
   /*background: #f0f2f5;*/
   background : burlywood;
-  padding: 20px 50px;
+  padding: 10px 50px;
+  height: 60px;
+  text-align: center;
+  line-height: 50px;
   color: rgba(0, 0, 0, 0.65);
-  font-size: 14px;
+  font-size: 18px;
 }
 
 body {
