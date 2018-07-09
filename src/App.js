@@ -69,7 +69,6 @@ export default class App extends Component {
           </Row>
         </Layout.Header>
         <Router>
-
           <Layout>
             <Layout.Sider style={{ minHeight: this.state.minHeight }}>
               <LeftMenu/>
