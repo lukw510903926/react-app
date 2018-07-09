@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 import Grid from "../components/Grid";
 import ReactForm from "../components/Form";
+import Login from "../components/Login";
 
 export default class ReactRoute extends Route {
 
@@ -18,6 +19,7 @@ export default class ReactRoute extends Route {
 
   render() {
     return <Switch>
+      <Route path="/login" component={Login}/>
       <Route exact path="/" render={() => <Redirect to="/form"/>}/>
       <Route path="/form" component={ReactForm}/>
       <Route path="/table" component={Grid}/>
