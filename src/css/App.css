@@ -65,13 +65,17 @@ body {
   to { transform: rotate(360deg); }
 }
 
-
-
-.gutter-example .ant-row > div {
-  background:transparent;
-  border: 0;
+.panel{
+  background-color: #222;
 }
-.gutter-box {
-  background: #00A0E9;
-  padding: 5px 0;
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+  color: #fff;
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+}
+.addButton,.addButton:hover,.addButton:focus{
+  color: #fff;
+  background-color: #40a9ff;
+  border-color: #40a9ff;
+  margin: 4px 4px;
 }
