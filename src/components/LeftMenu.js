@@ -31,7 +31,7 @@ class LeftMenu extends React.Component {
         < Menu.SubMenu key="sub1" title={<span><Icon type="setting"/><span>组件</span></span>}>
           <Menu.Item key="/table"><Link to="table">表格</Link></Menu.Item>
           <Menu.Item key="/form"><Link to="/form">表单</Link></Menu.Item>
-          <Menu.Item key="/productlist"><Link to="productlist">产品列表</Link></Menu.Item>
+          <Menu.Item key="/product/list"><Link to="product/list">产品列表</Link></Menu.Item>
         </ Menu.SubMenu>
         < Menu.SubMenu key="sub4" title={<span><Icon type="setting"/><span>Navigation Three</span></span>}>
           <Menu.Item key="9">Option 9</Menu.Item>

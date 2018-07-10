@@ -3,7 +3,7 @@ import { Layout } from "antd";
 import LeftMenu from "./components/LeftMenu";
 import { HashRouter as Router } from "react-router-dom";
 import { Row, Col } from "antd";
-import ReactRoute from "./route/route";
+import ReactRoute from "./route/index";
 import About from "./components/About";
 
 export default class App extends Component {
@@ -59,7 +59,6 @@ export default class App extends Component {
 
   render() {
     let info = { paddingRight: 20, textAlign: "right" };
-    let user = { name: "name", age: 20 };
     return (
       <Layout>
         <Layout.Header>
@@ -68,14 +67,14 @@ export default class App extends Component {
             <Col style={info} span={4}> 超级管理员 </Col>
           </Row>
         </Layout.Header>
-        <Router>
+        <Router exact>
           <Layout>
             <Layout.Sider style={{ minHeight: this.state.minHeight }}>
               <LeftMenu/>
             </Layout.Sider>
             <Layout>
               <Layout.Content span={24}>
-                <ReactRoute {...user} toParentHandle={this.getChildData.bind(this)}/>
+                <ReactRoute toParentHandle={this.getChildData.bind(this)}/>
               </Layout.Content>
               <Layout.Footer {...this.vue}>
                 <About/>
