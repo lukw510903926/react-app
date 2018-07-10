@@ -23,6 +23,7 @@ export default class ReactRoute extends Route {
    */
   requireLogin(route) {
     console.info("判断是否需要登录: " + route.auth);
+    // return <Redirect to={'/login'} />;
     return <route.name/>;
   }
 
