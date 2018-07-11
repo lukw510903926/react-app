@@ -33,7 +33,7 @@ export default class ProductList extends React.Component {
         ]
         return <div>
             <Row justify='end' type='flex' className='panel'>
-                <Link to="/product" className='ant-btn addButton'>新增</Link>
+                <Link to="/home/product" className='ant-btn addButton'>新增</Link>
             </Row>
             <Table bordered={true} rowKey={record => record.name} columns={columns}
                    dataSource={this.state.dataSource}/>

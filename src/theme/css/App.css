@@ -36,28 +36,10 @@ body {
     font-family: sans-serif;
 }
 
-.App {
-    text-align: center;
-}
-
-.App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
-}
-
-.App-header {
-    background-color: #222;
-    height: 150px;
-    padding: 20px;
-    color: white;
-}
-
-.App-title {
-    font-size: 1.5em;
-}
-
-.App-intro {
-    font-size: large;
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @keyframes App-logo-spin {
@@ -71,12 +53,6 @@ body {
 
 .panel {
     background-color: #001529;
-}
-
-.ant-btn-primary:hover, .ant-btn-primary:focus {
-    color: #fff;
-    background-color: #40a9ff;
-    border-color: #40a9ff;
 }
 
 .addButton, .addButton:hover, .addButton:focus {
@@ -96,6 +72,7 @@ body {
     margin: 5px 0;
     float: right;
 }
+
 .ant-pagination-item {
     cursor: pointer;
     border-radius: 4px;
@@ -115,4 +92,43 @@ body {
     margin-right: 8px;
     font-family: Arial;
     outline: 0;
+}
+
+/***login page***/
+.login-container {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    background-clip: padding-box;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 200px;
+    width: 400px;
+    height: 260px;
+    padding: 35px 35px 15px;
+    background: #fff;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 0 25px #cac6c6;
+}
+
+.login-page {
+    display: flex;
+    justify-content: center; /*水平居中*/
+    align-items: center;
+}
+
+/****form*****/
+.ant-form-item {
+    font-family: "Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(0, 0, 0, 0.65);
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    margin-bottom: 0px;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 15px;
+    vertical-align: top;
 }
