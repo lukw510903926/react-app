@@ -1,50 +1,49 @@
 import React from "react";
-import {Route, Redirect, Switch} from "react-router-dom";
+import {Route, Redirect, Switch, HashRouter as Router, withRouter} from "react-router-dom";
 import routes from "./route";
 
+class ReactRoute extends React.Component {
 
-export default class ReactRoute extends Route {
-
-
-    /**
-     * 路由切换时权限认证
-     * @param nextProps
-     * @param nextContext
-     */
-    componentWillReceiveProps(nextProps, nextContext) {
-        //通过toParentHandle 属性向父组件传递数据
-        // console.info(nextContext.router.route.location.pathname)
-        this.props.toParentHandle(false);
+    routeMap = {}
+    currentPath = ''
+    hasLogin = false
+    constructor(props) {
+        super(props)
+        routes.forEach(route => this.routeMap[route.key] = route)
     }
 
     /**
-     * 路由切换时权限认证
+     * 判断是否登录
      * @param route 路由信息
      */
-    requireLogin(route) {
-        console.info("判断是否需要登录: " + route.auth);
-        // return <Redirect to={'/login'} />;
-        // console.info(route)
+    componentDidUpdate() {
+        this.currentPath = this.props.location.pathname
+        let route = this.routeMap[this.currentPath]
         document.title = route.title
-        return <route.name/>;
+        this.hasLogin = route.auth
     }
 
     render() {
 
-        return <Switch>
-            <Route exact path="/home" render={() => <Redirect to="/home/form"/>}/>
-            {
-                routes.map((route) => {
-                    return <Route exact {...route} key={route.path} component={() => this.requireLogin(route)}/>;
-                })
-            }
-            {
-                /*  <Route path="/login" component={Login}/>
-              <Route exact path="/form" component={ReactForm}/>
-              <Route exact path="/table" component={Grid}/>
-              <Route exact path="/product" component={Product}/>
-              <Route exact path="/product/list" component={ProductList}/>*/}
-            <Redirect from='*' to='/home/404'/>
-        </Switch>;
+        return <Router>
+            <Switch>
+                <Route exact path="/home" render={() => <Redirect to="/home/form"/>}/>
+                {
+                    // routes.map(route => <Route {...route} exact component={ () => !route.auth ? <route.name /> : <Redirect to={'/login'}/> }/>)
+                    routes.map(route => <Route {...route} component={
+                        props => (!route.auth && !this.hasLogin ? (<route.name {...props}/>) : (<Redirect to={{pathname: '/login', state: {from: props.location}}}/>))
+                    }/>)
+                }
+                {
+                    /*  <Route path="/login" component={Login}/>
+                  <Route exact path="/form" component={ReactForm}/>
+                  <Route exact path="/table" component={Grid}/>
+                  <Route exact path="/product" component={Product}/>
+                  <Route exact path="/product/list" component={ProductList}/>*/}
+                <Redirect from='*' to='/home/404'/>
+            </Switch>
+        </Router>
     }
 }
+
+export default withRouter(ReactRoute)

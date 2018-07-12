@@ -5,6 +5,7 @@ class Login extends React.Component {
 
     constructor(props) {
         super(props);
+        let from = this.props.location.state ? this.props.location.state : '/home/form'
     }
 
     login = (e) => {
@@ -12,10 +13,14 @@ class Login extends React.Component {
         this.props.form.validateFieldsAndScroll((error, value) => {
             if (!error) {
                 console.info(value)
-                this.props.history.push('/home/form')
+                this.props.history.replace('/home/form')
             }
-        });
-    };
+        })
+    }
+
+    componentDidMount(){
+        console.info('---------------------')
+    }
 
     render() {
 
@@ -27,8 +32,8 @@ class Login extends React.Component {
             wrapperCol: {
                 xs: {span: 24},
                 sm: {span: 16},
-            },
-        };
+            }
+        }
         const fieldDecorator = this.props.form.getFieldDecorator
         return (
             <div style={{height: '960px'}} className='login-page'>
@@ -53,7 +58,7 @@ class Login extends React.Component {
                     </Form>
                 </div>
             </div>
-        );
+        )
     }
 }
 

@@ -15,6 +15,7 @@ export default class ProductList extends React.Component {
 
     componentDidMount() {
         this.getData()
+        console.info('---------------------')
         // this.fetchData()
         // FetchHttp.getRequest('http://localhost:8010/consumer/type/list', (data) => console.info(data))
         // FetchHttp.postRequest('http://localhost:8010/consumer/type/list',{name : 'fetch_name'}, (data) => console.info(data))
