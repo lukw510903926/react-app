@@ -1,6 +1,8 @@
 import React from 'react'
-import {Table, Button,Row} from 'antd'
-import { Link } from "react-router-dom";
+import {Table, Row} from 'antd'
+import {Link} from "react-router-dom";
+// import FetchHttp from '../../http/FetchHttp'
+// import AxiosHttp from '../../http/AxiosHttp'
 
 export default class ProductList extends React.Component {
 
@@ -13,6 +15,11 @@ export default class ProductList extends React.Component {
 
     componentDidMount() {
         this.getData()
+        // this.fetchData()
+        // FetchHttp.getRequest('http://localhost:8010/consumer/type/list', (data) => console.info(data))
+        // FetchHttp.postRequest('http://localhost:8010/consumer/type/list',{name : 'fetch_name'}, (data) => console.info(data))
+        // AxiosHttp.postRequest('http://localhost:8010/consumer/type/list',{name : 'fetch_name'}).then(response =>console.info(response.data),error =>console.info(error));
+        // AxiosHttp.getRequest('http://localhost:8010/consumer/type/list').then(response =>console.info(response.data),error =>console.info(error));
     }
 
     getData = () => {
