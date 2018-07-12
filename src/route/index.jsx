@@ -31,7 +31,7 @@ class ReactRoute extends React.Component {
                 {
                     // routes.map(route => <Route {...route} exact component={ () => !route.auth ? <route.name /> : <Redirect to={'/login'}/> }/>)
                     routes.map(route => <Route {...route} component={
-                        props => (route.auth && !this.hasLogin ? (<Redirect to={{pathname: '/login', state: {from: props.location}}}/>) : (<route.name {...props}/>))
+                        props => (route.auth && !this.hasLogin ? (<Redirect {...props} to={{pathname: '/login', state: {from: props.location}}}/>) : (<route.name {...props}/>))
                     }/>)
                 }
                 {
