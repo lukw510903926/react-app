@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form} from 'antd'
+import {Form,Input,Row,Button} from 'antd'
 
 class Product extends React.Component{
 
@@ -8,11 +8,43 @@ class Product extends React.Component{
         this.state = {}
     }
 
+    login = (e) => {
+        e.preventDefault();
+        this.props.form.validateFieldsAndScroll((error, value) => {
+            if (!error) {
+                console.info(value)
+                this.props.history.push('/home/product/list');
+            }
+        })
+    }
+
     render(){
-        let FieldDecorator = this.props.form.getFieldDecorator
+        let fieldDecorator = this.props.form.getFieldDecorator
+        const formItemLayout = {
+            labelCol: {
+                xs: {span: 24},
+                sm: {span: 4},
+            },
+            wrapperCol: {
+                xs: {span: 24},
+                sm: {span: 16},
+            },
+        };
         return <div>
-            <Form>
-                <Form.Item></Form.Item>
+            <Form onSubmit={this.login}>
+                <Form.Item  {...formItemLayout} label='产品名称'>
+                    {
+                        fieldDecorator('name')(<Input/>)
+                    }
+                </Form.Item>
+                <Form.Item  {...formItemLayout} label='产品编码'>
+                    {
+                        fieldDecorator('code')(<Input/>)
+                    }
+                </Form.Item>
+                <Row justify='center' type='flex'>
+                    <Button type='primary' htmlType='submit'>保存</Button>
+                </Row>
             </Form>
         </div>
     }
