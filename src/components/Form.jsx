@@ -82,7 +82,7 @@ class TimeRelatedForm extends React.Component {
     }
 
     render() {
-        const {getFieldDecorator} = this.props.form;
+        const fieldDecorator = this.props.form.getFieldDecorator;
         const {autoCompleteResult} = this.state;
 
         const formItemLayout = {
@@ -107,7 +107,7 @@ class TimeRelatedForm extends React.Component {
                 },
             },
         };
-        const prefixSelector = getFieldDecorator('prefix', { initialValue: '86', })(
+        const prefixSelector = fieldDecorator('prefix', {initialValue: '86'})(
             <Select style={{width: 70}}>
                 <Option value="86">+86</Option>
                 <Option value="87">+87</Option>
@@ -121,69 +121,83 @@ class TimeRelatedForm extends React.Component {
         return (
             <Form onSubmit={this.handleSubmit}>
                 <FormItem  {...formItemLayout} label="邮箱">
-                    {getFieldDecorator('email', {
-                        rules: [{
-                            type: 'email', message: 'The input is not valid E-mail!',
-                        }, {
-                            required: true, message: 'Please input your E-mail!',
-                        }],
-                    })(
-                        <Input/>
-                    )}
+                    {
+                        fieldDecorator('email', {
+                            rules: [{
+                                type: 'email', message: 'The input is not valid E-mail!',
+                            }, {
+                                required: true, message: 'Please input your E-mail!',
+                            }]
+                        })(<Input/>)
+                    }
                 </FormItem>
-                <FormItem {...formItemLayout} label="密码" >
-                    {getFieldDecorator('password', {
-                        rules: [{
-                            required: true, message: 'Please input your password!',
-                        }, {
-                            validator: this.validateToNextPassword,
-                        }],
-                    })(
-                        <Input type="password"/>
-                    )}
+                <FormItem {...formItemLayout} label="密码">
+                    {
+                        fieldDecorator('password', {
+                            rules: [{
+                                required: true, message: 'Please input your password!',
+                            }, {
+                                validator: this.validateToNextPassword,
+                            }]
+                        })(<Input type="password"/>)
+                    }
                 </FormItem>
-                <FormItem {...formItemLayout} label="重置密码" >
-                    {getFieldDecorator('confirm', {
-                        rules: [{
-                            required: true, message: 'Please confirm your password!',
-                        }, {
-                            validator: this.compareToFirstPassword,
-                        }],
-                    })(
-                        <Input type="password" onBlur={this.handleConfirmBlur}/>
-                    )}
+                <FormItem {...formItemLayout} label="重置密码">
+                    {
+                        fieldDecorator('confirm', {
+                            rules: [{
+                                required: true, message: 'Please confirm your password!',
+                            }, {
+                                validator: this.compareToFirstPassword,
+                            }]
+                        })(<Input type="password" onBlur={this.handleConfirmBlur}/>)
+                    }
                 </FormItem>
-                <FormItem {...formItemLayout}  label={( <span> 昵称&nbsp;
-                            <Tooltip title="What do you want others to call you?"> <Icon type="question-circle-o"/></Tooltip>
-                        </span> )}
-                    >
-                    {getFieldDecorator('nickname', { rules: [{required: true, message: 'Please input your nickname!', whitespace: true}],})(  <Input/> )}
+                <FormItem {...formItemLayout} label={(<span> 昵称&nbsp;
+                    <Tooltip title="What do you want others to call you?">
+                        <Icon type="question-circle-o"/></Tooltip></span>)}>
+                    {
+                        fieldDecorator('nickname', {
+                            rules: [{
+                                required: true,
+                                message: 'Please input your nickname!',
+                                whitespace: true
+                            }]
+                        })(<Input/>)
+                    }
                 </FormItem>
-                <FormItem
-                    {...formItemLayout}  label="地区" >
-                    {getFieldDecorator('residence', { initialValue: ['zhejiang', 'hangzhou', 'xihu'],
-                        rules: [{type: 'array', required: true, message: 'Please select your habitual residence!'}],
-                    })( <Cascader options={residences}/> )}
+                <FormItem{...formItemLayout} label="地区">
+                    {
+                        fieldDecorator('residence', {
+                            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
+                            rules: [{type: 'array', required: true, message: 'Please select your habitual residence!'}]
+                        })(<Cascader options={residences}/>)
+                    }
                 </FormItem>
-                <FormItem {...formItemLayout}  label="手机号码" >
-                    {getFieldDecorator('phone', { rules: [{required: true, message: 'Please input your phone number!'}], })(
-                        <Input addonBefore={prefixSelector} style={{width: '100%'}}/> )}
+                <FormItem {...formItemLayout} label="手机号码">
+                    {fieldDecorator('phone', {rules: [{required: true, message: 'Please input your phone number!'}],})(
+                        <Input addonBefore={prefixSelector} style={{width: '100%'}}/>)}
                 </FormItem>
                 <FormItem {...formItemLayout} label="微博地址">
-                    {getFieldDecorator('website', { rules: [{required: true, message: 'Please input website!'}],
-                    })
-                    (
-                      <AutoComplete dataSource={websiteOptions} onChange={this.handleWebsiteChange} placeholder="website" >
-                            <Input/>
-                      </AutoComplete>
-                    )}
+                    {
+                        fieldDecorator('website', {
+                            rules: [{required: true, message: 'Please input website!'}],
+                        })(
+                            <AutoComplete dataSource={websiteOptions} onChange={this.handleWebsiteChange}
+                                          placeholder="website">
+                                <Input/>
+                            </AutoComplete>
+                        )
+                    }
                 </FormItem>
                 <FormItem {...formItemLayout} label="验证码" extra="We must make sure that your are a human.">
                     <Row gutter={8}>
                         <Col span={12}>
-                            {getFieldDecorator('captcha', {
-                                rules: [{required: true, message: 'Please input the captcha you got!'}],
-                            })( <Input/>)}
+                            {
+                                fieldDecorator('captcha', {
+                                    rules: [{required: true, message: 'Please input the captcha you got!'}],
+                                })(<Input/>)
+                            }
                         </Col>
                         <Col span={12}>
                             <Button>获取验证码</Button>
@@ -191,10 +205,10 @@ class TimeRelatedForm extends React.Component {
                     </Row>
                 </FormItem>
                 <FormItem {...tailFormItemLayout}>
-                    {getFieldDecorator('agreement', { valuePropName: 'checked',
-                    })(
-                        <Checkbox>我已经阅读<a href="">协议</a></Checkbox>
-                    )}
+                    {
+                        fieldDecorator('agreement', {valuePropName: 'checked',})
+                        (<Checkbox>我已经阅读<a href="">协议</a></Checkbox>)
+                    }
                 </FormItem>
                 <FormItem {...tailFormItemLayout}>
                     <Button type="primary" htmlType="submit">注册</Button>
@@ -203,5 +217,6 @@ class TimeRelatedForm extends React.Component {
         );
     }
 }
+
 const ReactForm = Form.create()(TimeRelatedForm)
 export default ReactForm

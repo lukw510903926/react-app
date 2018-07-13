@@ -1,25 +1,27 @@
 import React from "react";
 import {Form, Input, Row, Button} from "antd";
+import Constants from '../util/Constants'
+import LocalStore from '../util/LocalStore'
 
 class Login extends React.Component {
 
     constructor(props) {
         super(props);
-        let from = this.props.location.state ? this.props.location.state : '/home/form'
+        let from = this.props.location.state ? this.props.location.state.from.pathname : null
+        if(from){
+            LocalStore.setItem('fromPath',from)
+        }
     }
 
     login = (e) => {
         e.preventDefault();
         this.props.form.validateFieldsAndScroll((error, value) => {
             if (!error) {
-                console.info(value)
-                this.props.history.replace('/home/form')
+                let from = LocalStore.getItem('fromPath') ? LocalStore.getItem('fromPath') : '/home/form'
+                this.props.history.replace(from)
+                LocalStore.setItem(Constants.LOGIN_USER,value)
             }
         })
-    }
-
-    componentDidMount(){
-        console.info('---------------------')
     }
 
     render() {
@@ -36,7 +38,7 @@ class Login extends React.Component {
         }
         const fieldDecorator = this.props.form.getFieldDecorator
         return (
-            <div style={{height: '960px'}} className='login-page'>
+            <div  className='login-page'>
                 <div className='login-container'>
                     <Row justify='center' type='flex' style={{fontSize: '18px', marginBottom: '15px'}}>
                         React 后台登录

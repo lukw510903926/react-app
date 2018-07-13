@@ -1,15 +1,18 @@
 import React from "react";
 import {Route, Redirect, Switch, HashRouter as Router, withRouter} from "react-router-dom";
 import routes from "./route";
+import Constants from '../util/Constants'
+import LocalStore from "../util/LocalStore";
 
 class ReactRoute extends React.Component {
 
-    routeMap = {}
-    currentPath = ''
-    hasLogin = false
     constructor(props) {
         super(props)
-        routes.forEach(route => this.routeMap[route.key] = route)
+        let routeMap = {}
+        routes.forEach(route => routeMap[route.key] = route)
+        this.state = {
+            routeMap: routeMap
+        }
     }
 
     /**
@@ -17,21 +20,23 @@ class ReactRoute extends React.Component {
      * @param route 路由信息
      */
     componentDidUpdate() {
-        this.currentPath = this.props.location.pathname
-        let route = this.routeMap[this.currentPath]
-        document.title = route ? route.title :'react'
-        this.hasLogin =  route ? route.auth : true
+        let currentPath = this.props.location.pathname
+        let route = this.state.routeMap[currentPath]
+        document.title = route ? route.title : 'react'
     }
 
     render() {
-
+        let loginUser = LocalStore.getItem(Constants.LOGIN_USER)
+        let hasLogin = loginUser ? true : false
         return <Router>
             <Switch>
                 <Route exact path="/home" render={() => <Redirect to="/home/form"/>}/>
                 {
                     // routes.map(route => <Route {...route} exact component={ () => !route.auth ? <route.name /> : <Redirect to={'/login'}/> }/>)
                     routes.map(route => <Route {...route} component={
-                        props => (route.auth && !this.hasLogin ? (<Redirect {...props} to={{pathname: '/login', state: {from: props.location}}}/>) : (<route.name {...props}/>))
+                        props => (route.auth && !hasLogin ?
+                            (<Redirect {...props} to={{pathname: '/login', state: {from: props.location}}}/>)
+                            : (<route.name {...props}/>))
                     }/>)
                 }
                 {
