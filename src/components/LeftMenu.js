@@ -29,10 +29,10 @@ class LeftMenu extends React.Component {
       <Menu mode="inline" theme="dark" selectedKeys={[this.props.location.pathname]}
             openKeys={this.state.openKeys} onOpenChange={this.onOpenChange}>
         <Menu.SubMenu key="sub1" title={<span><Icon type="setting"/><span>组件</span></span>}>
-
           <Menu.Item key="/home/form"><Link to="/home/form">表单</Link></Menu.Item>
-            <Menu.Item key="/home/table"><Link to="/home/table">表格</Link></Menu.Item>
+          <Menu.Item key="/home/table"><Link to="/home/table">表格</Link></Menu.Item>
           <Menu.Item key="/home/product/list"><Link to="/home/product/list">产品列表</Link></Menu.Item>
+          <Menu.Item key="/home/tabList"><Link to="/home/tabList">TabList</Link></Menu.Item>
         </ Menu.SubMenu>
         < Menu.SubMenu key="sub4" title={<span><Icon type="setting"/><span>Navigation Three</span></span>}>
           <Menu.Item key="9">Option 9</Menu.Item>
