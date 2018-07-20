@@ -14,6 +14,6 @@ const routes = [
     {key: "/home/product/list", path: "/home/product/list", name: ProductList, title: "产品列表", auth: false},
     {key: "/home/product", path: "/home/product", name: Product, title: "添加产品", auth: true},
     {key: "/home/404", path: "/home/404", name: NotFound, title: "页面未找到", auth: true},
-    {key: "/home/tabList", path: "/home/tabList", name: TabList, title: "页面未找到", auth: true}
+    {key: "/home/tabList", path: "/home/tabList", name: TabList, title: "tabs 标签页", auth: true}
 ];
 export default routes;
