@@ -7,9 +7,11 @@ class LeftMenu extends React.Component {
 
   constructor(props) {
     super(props);
+    let rootSubmenuKeys = routes.map(entity => entity.key);
+    let openKeys=[rootSubmenuKeys[0]];
     this.state = {
-      openKeys: ["sub1"],
-      rootSubmenuKeys: ["sub1", "sub2", "sub4"]
+      openKeys,
+      rootSubmenuKeys
     };
   }
 
@@ -25,10 +27,23 @@ class LeftMenu extends React.Component {
   };
 
   getMenuItem() {
+
     let menuItems = [];
     routes.forEach(entity => {
-      if (entity.menuItem) {
-        menuItems.push(<Menu.Item key={entity.key}><Link to={entity.path}>{entity.title}</Link></Menu.Item>);
+      if (entity.children) {
+        menuItems.push(<Menu.SubMenu key={entity.key} title={<span><Icon type={entity.type}/>{entity.title}</span>}>
+          {
+            entity.children.map(item => {
+              if (item.menuItem) {
+                return <Menu.Item key={item.key}><Link to={item.path}>{item.title}</Link></Menu.Item>;
+              }
+            })
+          }
+        </ Menu.SubMenu>);
+      } else {
+        if (entity.menuItem) {
+          return <Menu.Item key={entity.key}><Link to={entity.path}>{entity.title}</Link></Menu.Item>;
+        }
       }
     });
     return menuItems;
@@ -38,9 +53,7 @@ class LeftMenu extends React.Component {
     return (
       <Menu mode="inline" theme="dark" selectedKeys={[this.props.location.pathname]}
             openKeys={this.state.openKeys} onOpenChange={this.onOpenChange}>
-        <Menu.SubMenu key="sub1" title={<span><Icon type="setting"/>组件</span>}>
-          {this.getMenuItem()}
-        </ Menu.SubMenu>
+        {this.getMenuItem()}
       </Menu>
     );
   }
