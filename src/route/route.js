@@ -1,4 +1,3 @@
-import Grid from "../components/Grid";
 import ReactForm from "../components/Form";
 import Login from "../components/Login";
 import ProductList from "../components/page/Product/ProductList";
@@ -13,7 +12,6 @@ const routes = [
     key: "sub1", path: "/login", title: "组件", type: "setting",
     children: [
       { key: "/login", path: "/login", name: Login, title: "登录页", auth: false, menuItem: false },
-      { key: "/home/table", path: "/home/table", name: Grid, title: "表格", auth: false, menuItem: true },
       { key: "/home/form", path: "/home/form", name: ReactForm, title: "表单", auth: false, menuItem: true },
       { key: "/home/product/list",path: "/home/product/list",name: ProductList,title: "产品列表",auth: false,menuItem: true },
       { key: "/home/product", path: "/home/product", name: Product, title: "添加产品", auth: true, menuItem: false },
