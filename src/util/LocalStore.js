@@ -30,6 +30,12 @@ export default class LocalStore {
     sessionStorage.clear();
   }
 
+  /**
+   * 设定cookie
+   * @param key
+   * @param value
+   * @param options {path?: string; expires?: Date; maxAge?: number; domain?: string; secure?: boolean; httpOnly?: boolean;}
+   */
   static setCookie(key, value, options = {}) {
 
     if (!options.expires) {
@@ -39,6 +45,11 @@ export default class LocalStore {
     this.cookies.set(key, value, options);
   }
 
+  /**
+   * 删除cookie
+   * @param key
+   * @param options {path?: string; expires?: Date; maxAge?: number; domain?: string; secure?: boolean; httpOnly?: boolean;}
+   */
   static deleteCookie(key, options = {}) {
     let now = new Date().getTime();
     options.expires = new Date(now - this.default_time_out);

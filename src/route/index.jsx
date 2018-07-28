@@ -9,7 +9,15 @@ class ReactRoute extends React.Component {
   constructor(props) {
     super(props);
     let routeMap = {};
-    routes.forEach(route => routeMap[route.key] = route);
+    routes.forEach(route => {
+      if (route.children) {
+        route.children.forEach(entity => {
+          routeMap[entity.key] = entity;
+        });
+      } else {
+        routeMap[route.key] = route;
+      }
+    });
     this.state = {
       routeMap: routeMap
     };
@@ -19,15 +27,23 @@ class ReactRoute extends React.Component {
    * 判断是否登录
    * @param route 路由信息
    */
-  componentDidUpdate(){
+  componentDidUpdate() {
     let currentPath = this.props.location.pathname;
     let route = this.state.routeMap[currentPath];
-    document.title = route ? route.title : "react";
+    document.title = route ? route.title : "react后台管理系统";
   }
 
   getRoutes(hasLogin) {
 
-    return routes.map(route => <Route {...route} component={
+    let items = [];
+    routes.forEach(entity => {
+      if (entity.children) {
+        items.push(...entity.children);
+      } else {
+        items.push(entity);
+      }
+    });
+    return items.map(route => <Route {...route} component={
       props => (route.auth && !hasLogin ?
         (<Redirect {...props} to={{ pathname: "/login", state: { from: props.location } }}/>) :
         (<route.name {...props}/>))
@@ -36,8 +52,7 @@ class ReactRoute extends React.Component {
   }
 
   render() {
-    let loginUser = LocalStore.getItem(Constants.LOGIN_USER);
-    let hasLogin = loginUser ? true : false;
+    let hasLogin = !!LocalStore.getItem(Constants.LOGIN_USER);
     return (
       <Router>
         <Switch>
