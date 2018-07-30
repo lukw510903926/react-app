@@ -1,21 +1,24 @@
 import { Menu, Icon } from "antd";
 import React from "react";
+import routes from "../route/route";
 import { Link, withRouter } from "react-router-dom";
 
 class LeftMenu extends React.Component {
 
   constructor(props) {
     super(props);
+    let rootSubmenuKeys = routes.map(entity => entity.key);
+    let openKeys=[rootSubmenuKeys[0]];
     this.state = {
-      openKeys: ["sub1"]
+      openKeys,
+      rootSubmenuKeys
     };
   }
 
-  rootSubmenuKeys = ["sub1", "sub2", "sub4"];
-  onOpenChange = (openKeys) => {
-    const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
-    if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-      this.setState({ openKeys });
+  onOpenChange = (openKey) => {
+    const latestOpenKey = openKey.find(key => this.state.openKeys.indexOf(key) === -1);
+    if (this.state.rootSubmenuKeys.includes(latestOpenKey)) {
+      this.setState({ openKeys: openKey });
     } else {
       this.setState({
         openKeys: latestOpenKey ? [latestOpenKey] : []
@@ -23,21 +26,34 @@ class LeftMenu extends React.Component {
     }
   };
 
-  render() {
+  getMenuItem() {
 
+    let menuItems = [];
+    routes.forEach(entity => {
+      if (entity.children) {
+        menuItems.push(<Menu.SubMenu key={entity.key} title={<span><Icon type={entity.type}/>{entity.title}</span>}>
+          {
+            entity.children.map(item => {
+              if (item.menuItem) {
+                return <Menu.Item key={item.key}><Link to={item.path}>{item.title}</Link></Menu.Item>;
+              }
+            })
+          }
+        </ Menu.SubMenu>);
+      } else {
+        if (entity.menuItem) {
+          return <Menu.Item key={entity.key}><Link to={entity.path}>{entity.title}</Link></Menu.Item>;
+        }
+      }
+    });
+    return menuItems;
+  }
+
+  render() {
     return (
       <Menu mode="inline" theme="dark" selectedKeys={[this.props.location.pathname]}
             openKeys={this.state.openKeys} onOpenChange={this.onOpenChange}>
-        <Menu.SubMenu key="sub1" title={<span><Icon type="setting"/><span>组件</span></span>}>
-          <Menu.Item key="/home/form"><Link to="/home/form">表单</Link></Menu.Item>
-          <Menu.Item key="/home/table"><Link to="/home/table">表格</Link></Menu.Item>
-          <Menu.Item key="/home/product/list"><Link to="/home/product/list">产品列表</Link></Menu.Item>
-          <Menu.Item key="/home/tabList"><Link to="/home/tabList">TabList</Link></Menu.Item>
-        </ Menu.SubMenu>
-        < Menu.SubMenu key="sub4" title={<span><Icon type="setting"/><span>Navigation Three</span></span>}>
-          <Menu.Item key="9">Option 9</Menu.Item>
-          <Menu.Item key="10">Option 10</Menu.Item>
-        </ Menu.SubMenu>
+        {this.getMenuItem()}
       </Menu>
     );
   }
