@@ -9,7 +9,7 @@ import TabList from "../components/page/TabList";
 const routes = [
 
   {
-    key: "sub1", path: "/login", title: "组件", type: "setting",
+    key: "sub1", path: "/login", title: "组件", type: "setting",menuItem: true,
     children: [
       { key: "/login", path: "/login", name: Login, title: "登录页", auth: false, menuItem: false },
       { key: "/home/form", path: "/home/form", name: ReactForm, title: "表单", auth: false, menuItem: true },
