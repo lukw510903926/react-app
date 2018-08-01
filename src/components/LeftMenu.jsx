@@ -28,23 +28,23 @@ class LeftMenu extends React.Component {
 
     getMenuItem() {
 
-        let menuItems = [];
+        let menu = [];
         routes.forEach(entity => {
             if (entity.children) {
-                menuItems.push(<Menu.SubMenu key={entity.key} title={<span><Icon type={entity.type}/>{entity.title}</span>}>
+                menu.push(<Menu.SubMenu key={entity.key} title={<span><Icon type={entity.type}/>{entity.title}</span>}>
                     {
                         entity.children.map(item => {
-                            if (item.menuItem) {
+                            if (item.isMenu) {
                                 return <Menu.Item key={item.key}><Link to={item.path}>{item.title}</Link></Menu.Item>;
                             }
                         })
                     }
                 </Menu.SubMenu>);
-            } else if (entity.menuItem) {
+            } else if (entity.isMenu) {
                 return <Menu.Item key={entity.key}><Link to={entity.path}>{entity.title}</Link></Menu.Item>;
             }
         });
-        return menuItems;
+        return menu;
     }
 
     render() {
