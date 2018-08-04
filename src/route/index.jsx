@@ -25,7 +25,6 @@ class ReactRoute extends React.Component {
 
   /**
    * 判断是否登录
-   * @param route 路由信息
    */
   componentDidUpdate() {
     let currentPath = this.props.location.pathname;
