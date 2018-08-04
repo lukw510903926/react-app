@@ -1,9 +1,9 @@
-import ReactForm from "../components/Form";
-import Login from "../components/Login";
-import ProductList from "../components/page/Product/ProductList";
-import Product from "../components/page/Product/Product";
-import NotFound from "../components/404";
-import TabList from "../components/page/TabList";
+import ReactForm from "@/components/Form";
+import Login from "@/components/Login";
+import ProductList from "@/components/page/Product/ProductList";
+import Product from '@/components/page/Product/Product';
+import NotFound from "@/components/404";
+import TabList from "@/components/page/TabList";
 
 
 const routes = [
