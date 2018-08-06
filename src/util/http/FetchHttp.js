@@ -1,7 +1,7 @@
 export default class FetchHttp {
 
     static getHeader() {
-        var headers = new Headers();
+        let headers = new Headers();
         headers.append('Content-Type', 'text/plain');
         headers.append('X-My-Custom-Header', 'CustomValue');
         headers.append('CLOUD_HEADER', 'CLOUD_HEADER_VALUE');
@@ -19,12 +19,12 @@ export default class FetchHttp {
     }
 
     static postRequest = (url, params, callback) => {
-        var data = new FormData();
-         data.append("name","hello");
+        let data = new FormData();
+        data.append("name", "hello");
         fetch(url, {
             method: 'post',
             body: JSON.stringify(params),
-            mode:'cors',
+            mode: 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
