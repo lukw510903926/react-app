@@ -10,7 +10,7 @@ export default class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currenctPath: '',
+            currentPath: '',
             minHeight: props.height || -1,
             width: props.width || -1
         };
@@ -37,8 +37,8 @@ export default class Home extends React.Component {
             //console.info(ReactDOM.findDOMNode(this).parentNode);
             // let {  width,  height } = this.props;
             //如果props没有指定height和width就自适应
-            var minHeight = document.body.clientHeight - 64;
-            var width = document.body.clientWidth;
+            let minHeight = document.body.clientHeight - 64;
+            let width = document.body.clientWidth;
             this.setState({
                 width,
                 minHeight
