@@ -47,12 +47,12 @@ class TimeRelatedForm extends React.Component {
                 console.log('Received values of form: ', values);
             }
         });
-    }
+    };
 
     handleConfirmBlur = (e) => {
         const value = e.target.value;
         this.setState({confirmDirty: this.state.confirmDirty || !!value});
-    }
+    };
 
     compareToFirstPassword = (rule, value, callback) => {
         const form = this.props.form;
@@ -61,7 +61,7 @@ class TimeRelatedForm extends React.Component {
         } else {
             callback();
         }
-    }
+    };
 
     validateToNextPassword = (rule, value, callback) => {
         const form = this.props.form;
@@ -69,7 +69,7 @@ class TimeRelatedForm extends React.Component {
             form.validateFields(['confirm'], {force: true});
         }
         callback();
-    }
+    };
 
     handleWebsiteChange = (value) => {
         let autoCompleteResult;
@@ -79,7 +79,7 @@ class TimeRelatedForm extends React.Component {
             autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
         }
         this.setState({autoCompleteResult});
-    }
+    };
 
     render() {
         const fieldDecorator = this.props.form.getFieldDecorator;
@@ -218,5 +218,4 @@ class TimeRelatedForm extends React.Component {
     }
 }
 
-const ReactForm = Form.create()(TimeRelatedForm)
-export default ReactForm
+export default Form.create()(TimeRelatedForm)
