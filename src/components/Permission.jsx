@@ -13,7 +13,7 @@ export default (WrappedComponent) => {
         render() {
             let hasLogin = !!LocalStore.getItem(Constants.LOGIN_USER);
             if (!hasLogin) {
-                return <Redirect {...this.props} to={{pathname: "/login", state: {from: props.location}}}/>;
+                return <Redirect {...this.props} to={{pathname: "/login", state: {from: this.props.location}}}/>;
             }
             return <WrappedComponent/>
         }
