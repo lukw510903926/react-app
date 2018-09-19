@@ -1,4 +1,3 @@
-import redux from 'redux'
 import React from 'react'
 import {Button, Row, Col} from 'antd'
 

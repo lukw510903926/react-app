@@ -1,4 +1,3 @@
-import redux from 'redux'
 import React from 'react'
 import {Col, Row} from "antd";
 
