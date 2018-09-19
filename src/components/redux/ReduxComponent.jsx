@@ -1,5 +1,6 @@
 import React from 'react'
 import {Button, Row, Col} from 'antd'
+import store from '@/store/store'
 
 class ReduxComponent extends React.Component {
 
@@ -10,9 +11,9 @@ class ReduxComponent extends React.Component {
     }
 
     changeValue = () => {
-        console.info('click value change')
         let msg = this.state.msg + 'click msg  '
         this.setState({msg})
+        store.dispatch({type:'redux'})
     }
 
     render() {

@@ -1,12 +1,16 @@
-import React from 'react'
+import React from 'react';
 import {Col, Row} from "antd";
+import store from "@/store/store";
 
 class ReduxBrother extends React.Component {
 
     constructor(props) {
-        super(props)
-        let msg = 'ReduxBrother msg'
-        this.state = {msg}
+        super(props);
+        let msg = 'ReduxBrother msg';
+        this.state = {msg};
+        store.subscribe(() =>
+            this.setState({msg: this.state.msg + '  ' + store.getState().dispatchMsg})
+        );
     }
 
     render() {
