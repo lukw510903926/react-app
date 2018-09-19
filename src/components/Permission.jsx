@@ -15,7 +15,7 @@ export default (WrappedComponent) => {
             if (!hasLogin) {
                 return <Redirect {...this.props} to={{pathname: "/login", state: {from: this.props.location}}}/>;
             }
-            return <WrappedComponent/>
+            return <WrappedComponent {...this.props}/>
         }
     }
 }
