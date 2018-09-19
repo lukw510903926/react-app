@@ -19,11 +19,22 @@ function dispatchMsg(state = {}, action) {
     }
 }
 
+function dispatchInfo(state = {}, action) {
+    switch (action.type) {
+        case 'created':
+            return  'created';
+        case 'update':
+            return 'update';
+        default:
+            return state;
+    }
+}
+
 /**
  * 合并reducer
  * @type {Reducer<any> | Reducer<any, AnyAction>}
  */
-let reducer = combineReducers({dispatchMsg})
+let reducer = combineReducers({dispatchMsg,dispatchInfo})
 // 创建 Redux store 来存放应用的状态。 API 是 { subscribe, dispatch, getState }。
 let store = createStore(reducer);
 
