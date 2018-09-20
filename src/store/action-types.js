@@ -1,0 +1,5 @@
+export const ADD_COMMENT = 'ADD_COMMENT';
+export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
+
+export const ADD_USER = 'ADD_USER';
