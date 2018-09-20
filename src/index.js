@@ -4,12 +4,13 @@ import "antd/dist/antd.css";
 import App from './App';
 import {Provider} from 'react-redux'
 import "./theme/css/App.css";
+import "./theme/css/bootstrap.css";
 import registerServiceWorker from './registerServiceWorker';
 import store from '@/store/store'
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <App store={store}/>
     </Provider>,
     document.getElementById('root'));
 registerServiceWorker();

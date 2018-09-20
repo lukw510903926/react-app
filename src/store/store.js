@@ -1,52 +1,16 @@
-import {combineReducers, createStore} from 'redux'
+import React from 'react'
+import {createStore, applyMiddleware} from 'redux'
+import thunk from 'redux-thunk'
+import {composeWithDevTools} from 'redux-devtools-extension'
 
-/**
- * reducer
- * @param state
- * @param action
- * @returns {string}
- */
-function dispatchMsg(state = {}, action) {
-    switch (action.type) {
-        case 'INCREMENT':
-            return  'INCREMENT';
-        case 'DECREMENT':
-            return 'DECREMENT';
-        case 'redux':
-            return 'redux';
-        default:
-            return state;
-    }
-}
+import reducers from './reducers'
 
-function dispatchInfo(state = {}, action) {
-    switch (action.type) {
-        case 'created':
-            return  'created';
-        case 'update':
-            return 'update';
-        default:
-            return state;
-    }
-}
-
-/**
- * 合并reducer
- * @type {Reducer<any> | Reducer<any, AnyAction>}
- */
-let reducer = combineReducers({dispatchMsg,dispatchInfo})
-// 创建 Redux store 来存放应用的状态。 API 是 { subscribe, dispatch, getState }。
-let store = createStore(reducer);
-
-// 可以手动订阅更新，也可以事件绑定到视图层。
-store.subscribe(() =>
-    console.log(store.getState())
+let store = createStore(
+    reducers,
+    composeWithDevTools(applyMiddleware(thunk)) // 应用上异步中间件
 );
 
-// 改变内部 state 惟一方法是 dispatch 一个 action。
-// action 可以被序列化，用日记记录和储存下来，后期还可以以回放的方式执行
-store.dispatch({type: 'INCREMENT'});
-store.dispatch({type: 'INCREMENT'});
-store.dispatch({type: 'DECREMENT'});
+store.subscribe(()=>console.log(store.getState()));
 
+// 根据counter函数创建store对象
 export default store
