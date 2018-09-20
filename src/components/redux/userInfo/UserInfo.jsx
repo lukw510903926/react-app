@@ -4,7 +4,7 @@ import UserList from '@/components/redux/userInfo/UserList'
 import {Row} from 'antd'
 import {getComments} from '@/store/actions'
 
-class UserInfo extends React.Component {
+export default class UserInfo extends React.Component {
 
     constructor(props) {
         super(props)
@@ -23,4 +23,3 @@ class UserInfo extends React.Component {
         )
     }
 }
-export default UserInfo

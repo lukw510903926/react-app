@@ -12,8 +12,8 @@ class AddUser extends React.Component {
             username: Date.now(),
             age: Math.floor(Math.random()*(10)+10)
         };
-        this.changeUsername = this.changeUsername.bind(this)
-        this.changeAge = this.changeAge.bind(this)
+        this.changeUsername = this.changeUsername.bind(this);
+        this.changeAge = this.changeAge.bind(this);
         this.addUserInfo = this.addUserInfo.bind(this)
     }
 
@@ -30,8 +30,8 @@ class AddUser extends React.Component {
     };
 
     addUserInfo = () => {
-        console.info(this.props)
-        this.props.addUser({...this.state,created:new Date().getMilliseconds()})
+        console.info(this.props);
+        this.props.addUser({...this.state,created:new Date().getMilliseconds()});
         this.setState({
             username: Date.now(),
             age: Math.floor(Math.random()*(10)+10)
