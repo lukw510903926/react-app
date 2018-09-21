@@ -42,10 +42,10 @@ class AddUser extends React.Component {
         return (
             <div>
                 <Row gutter={5}>
-                    <Col offset={4} span={8}>
+                    <Col offset={2} span={8}>
                         <Input addonBefore='姓名' name='username' onChange={this.changeUsername} value={this.state.username}/>
                     </Col>
-                    <Col span={6}>
+                    <Col span={8}>
                         <Input addonBefore='年龄' name='age' onChange={this.changeAge} value={this.state.age}/>
                     </Col>
                     <Col span={2}>

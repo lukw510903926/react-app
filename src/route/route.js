@@ -4,11 +4,11 @@ import ProductList from "@/components/page/Product/ProductList";
 import Product from '@/components/page/Product/Product';
 import NotFound from "@/components/404";
 import TabList from "@/components/page/TabList";
-
 import User from '@/components/page/system/User'
 import Resource from '@/components/page/system/Resource'
 import Role from '@/components/page/system/Role'
-
+import Comment from '@/components/redux/comment/Comment'
+import UserInfo from '@/components/redux/userInfo/UserInfo'
 
 const routes = [
   { key: "/home/404", path: "/home/404", name: NotFound, title: "页面未找到", auth: true, isMenu: false },
@@ -28,6 +28,13 @@ const routes = [
       { key: "/home/system/user",path: "/home/system/user",name: User,title: "用户管理",auth: false,isMenu: true },
       { key: "/home/system/resource", path: "/home/system/resource", name: Resource, title: "资源管理", auth: true, isMenu: true },
       { key: "/home/system/role", path: "/home/system/role", name: Role, title: "角色管理", auth: true, isMenu: true }
+    ]
+  },
+   {
+    key: "redux", title: "redux状态管理", type: "setting",isMenu: true,
+    children: [
+        { key: "/home/redux/user",path: "/home/redux/user",name: UserInfo,title: "用户管理",auth: false,isMenu: true },
+        { key: "/home/redux/comment", path: "/home/redux/comment", name: Comment, title: "评论管理", auth: true, isMenu: true }
     ]
   }
 ];

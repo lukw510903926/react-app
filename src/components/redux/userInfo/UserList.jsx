@@ -14,8 +14,9 @@ class UserList extends React.Component {
         ];
         return (
             <Row>
-                <Col offset={4} span={16}>
-                    <Table bordered={true} rowKey={record => record.created} dataSource={this.props.userList} columns={columns}/>
+                <Col offset={2} span={18}>
+                    <Table bordered={true} rowKey={record => record.created}
+                           dataSource={this.props.userList} columns={columns}/>
                 </Col>
             </Row>
         )

@@ -2,11 +2,13 @@ import React from 'react'
 import {createStore, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
+import {logger} from 'redux-logger'
 
 import reducers from './reducers'
 
 let store = createStore(
     reducers,
+    applyMiddleware(logger),
     composeWithDevTools(applyMiddleware(thunk)) // 应用上异步中间件
 );
 
