@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 
 import {
     ADD_COMMENT,
@@ -9,7 +9,7 @@ import {
 
 const initComments = [];
 
-function comments(state = initComments, action) {
+function comments(action, state = initComments) {
     switch (action.type) {
         case ADD_COMMENT:
             return [...state, action.data];
@@ -22,9 +22,9 @@ function comments(state = initComments, action) {
     }
 }
 
-let initList = [{'username':'张三','age':20,created:Date.now()},{'username':'李四','age':30,created:Date.now()+1}];
+let initList = [{ 'username': '张三', 'age': 20, created: Date.now() }, { 'username': '李四', 'age': 30, created: Date.now() + 1 }];
 
-function userList(state = initList, action) {
+function userList(action, state = initList) {
     switch (action.type) {
         case ADD_USER:
             return [...state, action.data];
