@@ -23,7 +23,7 @@
     "eject": "react-app eject"
   },
   "devDependencies": {
-    "ajv": "^6.5.2",
+    "ajv": "^6.12.3",
     "babel-cli": "^6.26.0",
     "babel-plugin-dva-hmr": "^0.4.1",
     "babel-plugin-import": "^1.8.0",
